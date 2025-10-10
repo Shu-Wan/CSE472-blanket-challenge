@@ -1,0 +1,52 @@
+# python stuff
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Python package build artifacts
+*.egg-info/
+build/
+dist/
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints
+
+# Data files and datasets
+data/
+datasets/
+
+# Logs
+logs/
+*.log
+*.err
+*.out
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+
+# Temporary files
+tmp/
+temp/
+
+# HuggingFace cache
+.cache/
+
+# raw data
+*.csv
+
+#
+private/
+.markdownlint.yaml
