@@ -34,7 +34,7 @@ See detailed task instructions in [TASK.md](docs/TASK.md)
 
 ## 📚 Resources & Materials
 
-* [🤗 Hugging Face Datasets](https://huggingface.co/datasets/Shuwan/*SE472-blanket-challenge)
+* [🤗 Hugging Face Datasets](https://huggingface.co/datasets/Shuwan/CSE472-blanket-challenge)
 * [📚 Reading Materials](docs/READING.md)
 * [📝 Changelog](CHANGELOG.md)
 
