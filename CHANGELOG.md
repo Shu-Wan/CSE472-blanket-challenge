@@ -9,10 +9,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Warmup hands-on materials.
-- Quickstarter examples for baseline methods.
+- [feature]: Evaluation tools
+- [feature]: Markov blanket in iid setting baseline.
+- [feature]: Release Dataset 2.
+- [feature]: Evaluation scripts and metrics.
+
+## [0.1.0] - 2025-10-22
+
+### Added
+
+- Release 1st lab materials.
 - Release Dataset 1.
-- Evaluation scripts and metrics.
+- Added more reading materials.
+- Added `uv.lock` and `pyproject.toml` for environment management.
+
+### Changed
+
+- Update [schedule](docs/SCHEDULE.md).
 
 ## [0.0.1] - 2025-10-09
 

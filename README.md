@@ -19,23 +19,37 @@ and struggle to generalize across domains.
 **Your Mission**: Design a model that performs causal feature selection and achieves
 robust performance across different environments.
 
-## Timeline & Milestones
+### Timeline & Milestones
 
 Project Duration: 7 Weeks (Oct 10–Nov 27, 2025)
 
-| Phase                  | Duration           | Focus Areas                  |
-| :--------------------- | :----------------- | :--------------------------- |
-| **Warm-up**          | Oct 10–16, 2025    | Reading / Implementation |
-| **Phase 1**          | Oct 17–23, 2025    | Reading / Implementation |
-| **Phase 2**          | Oct 24–Nov 6, 2025 | Reading / Implementation |
-| **Final Evaluation** | Nov 7–27, 2025     | Implementation / Report  |
+| Phase                | Duration           | Focus Areas              |
+| :------------------- | :----------------- | :----------------------- |
+| **Warm-up**          | Oct 10–21, 2025    | Reading / Implementation |
+| **Phase 1**          | Oct 22–30, 2025    | Implementation / Tasks   |
+| **Phase 2**          | Oct 31–Nov 5, 2025 | Implementation / Tasks   |
+| **Phase 3**          | Nov 6–12, 2025     | Implementation / Tasks   |
+| **Final Evaluation** | Nov 13–27, 2025    | Implementation / Report  |
 
-See detailed task instructions in [TASK.md](docs/TASK.md)
+See detailed schedule in [SCHEDULE.md](docs/SCHEDULE.md)
+
+## Environment Setup
+
+I already added required environment settings in `pyproject.toml`. You can use uv to set up the environment:
+
+```bash
+uv venv  # start a virtual environment
+source .venv/bin/activate  # activate the virtual environment
+uv sync  # sync with pyproject.toml
+```
+
+conda, pip, or other environment management tools can also be used.
 
 ## 📚 Resources & Materials
 
-* [🤗 Hugging Face Datasets](https://huggingface.co/datasets/Shuwan/*SE472-blanket-challenge)
-* [📚 Reading Materials](docs/READING.md)
+* [🤗 Hugging Face Datasets](https://huggingface.co/datasets/CSE472-blanket-challenge): our project
+Hugging Face space, hosting datasets, models and more
+* [📚 Reading Materials](docs/READING.md): Reading materials and where to download them
 * [📝 Changelog](CHANGELOG.md)
 
 ## 🎯 Deliverables
@@ -47,6 +61,16 @@ See detailed task instructions in [TASK.md](docs/TASK.md)
 | **Additional Materials** | Any course-specific requirements |
 
 ## Frequently Asked Questions
+
+<details>
+<summary><strong> If the project goes well, could students be included in a paper,
+or is it mainly about replication?</strong></summary>
+
+The project builds on an ongoing research that's still in an exploratory stage.
+The instructor will ensure all tasks have reasonable, verifiable answers and will be actively
+involved in the process. While the main goal is to explore and understand the work, there is
+potential for meaningful contributions depending on progress.
+</details>
 
 <details>
 <summary><strong> I'm not enrolled in the course or couldn't join a team. Can I still participate?</strong></summary>
