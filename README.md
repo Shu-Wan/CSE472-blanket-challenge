@@ -1,3 +1,4 @@
+<!-- markdownlint-disable-next-line -->
 # <img src="docs/logo.png" alt="logo" width="40" style="vertical-align:middle;"/> Beyond the Blanket Challenge
 
 A CSE472 Course Project at Arizona State University

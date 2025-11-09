@@ -1,18 +1,19 @@
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.0
+    rev: v0.14.4
     hooks:
       - id: ruff-check
         types_or: [python, pyi]
-        args: [--fix, src, scripts, tests]
+        args: [--fix, src]
       - id: ruff-format
         types_or: [python, pyi]
-        args: [src, scripts, tests]
+        args: [src]
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
       - id: check-added-large-files
+        exclude: '^labs/.*'
       - id: check-case-conflict
       - id: check-merge-conflict
       - id: mixed-line-ending

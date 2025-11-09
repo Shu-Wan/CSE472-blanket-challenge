@@ -47,6 +47,9 @@ temp/
 # raw data
 *.csv
 
-#
+# python package distribution files
+*.egg-info/
+
+# Private files
 private/
 .markdownlint.yaml
