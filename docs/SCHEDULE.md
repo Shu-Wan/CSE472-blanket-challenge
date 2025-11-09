@@ -2,7 +2,7 @@
 
 ## Warm-up (Oct 10–21, 2025)
 
-Familiarize yourself with causal feature selection concepts and implement a baseline method.
+Familiarize yourself with causal feature selection and get hands-on experience.
 
 ### Reading
 
@@ -22,38 +22,39 @@ Familiarize yourself with causal feature selection concepts and implement a base
 
 *Is Markov Blanket the optimal feature set?*
 
-Get hands-on experience of causal discovery, causal feature selection.
-See if Markov Blanket is truly the minimal and optimal feature set.
+Hi Challenger!
 
-### Reading
-
-- Markov Blanket is the minimal and optimal feature set
-  - https://www.reddit.com/r/MachineLearning/comments/1d7dd43/d_intuitive_understanding_of_markov_blanket/
-  - https://en.wikipedia.org/wiki/Markov_blanket
-
-### Tasks
+- Get hands-on experience of causal discovery, causal feature selection.
+- See if Markov Blanket is truly the minimal and optimal feature set.
 
 - Complete [Lab1](/labs/01_causal_discovery)
-- Complete Lab2 (To be released)
+- See [Lab1 README](/labs/01_causal_discovery/README.md) for details
 
-> [!NOTE]
->
-> - Implement your first causal feature selection method
-> - compare with no feature selection model (all features)
-> - compare with a non-causal feature selection method (filter)
-> - compare with Lasso (embedded)
-
-### Questions
-
-1. Does MB truly give the optimal predictive performance?
-2. Is CFS method always better than non-causal FS methods?
-
-## Phase 2 (Oct 31 – Nov 5, 2025) (To be released)
+## Phase 2 (Oct 31 – Nov 5, 2025)
 
 *The Emperor’s New Markov Blankets*
+
+The Markov Blanket is having an existential crisis.
+
+- Is the MB truly the minimal and optimal feature set?
+- Is CD-MB useful in practice?
+
+- Complete [Lab2](/labs/02_markov_blanket_iid)
+- See [Lab2 README](/labs/02_markov_blanket_iid/README.md) for details
 
 ## Phase 3 (Nov 6 – Nov 12, 2025) (To be released)
 
 *Beyond the Markov Blanket*
 
+So… what's beyond the MB?
+
+- Test whether MB is still useful in OOD settings.
+- Propose new approaches to do causal feature selection for OOD scenarios.
+
 ## Final Evaluation (Nov 13 – Nov 27, 2025) (To be released)
+
+*Enter the Challenge*
+
+Your final test has come. We've seen the rise and fall of MB in IID and OOD settings.
+
+Build a model that performs feature selection across environments without sacrificing predictive performance.

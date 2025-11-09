@@ -1,20 +1,53 @@
+[build-system]
+requires = ["setuptools>=80", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
-name = "blanket-challenge"
-version = "0.1.0"
-readme = "README.md"
+name = "blanket"
+version = "0.0.1"
+description = "Blanket Challenge"
 requires-python = "==3.12.*"
 dependencies = [
-    "causal-learn>=0.1.4.3",
+    "networkx>=3.0",
+    "numpy>=2.0",
+    "pydantic>=2.0",
     "datasets>=4.2.0",
-    "ipykernel<7.0.0",
-    "jupyter>=1.1.1",
-    "numpy>=2.3.4",
-    "pandas>=2.3.3",
-    "scikit-learn>=1.7.2",
-    "seaborn>=0.13.2",
+    "python-dotenv>=1.1.1",
+    "pyprojroot>=0.3.0",
+    "matplotlib>=3.7",
+    "pandas>=2.0",
+    "causal-learn>=0.1.4.3",
+    "gcastle>=1.0.4",
+    "torch>=2.7.0",
 ]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cpu", marker = "sys_platform != 'linux'" },
+    { index = "pytorch-cu128", marker = "sys_platform == 'linux'" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
 
 [dependency-groups]
 dev = [
+    "ipykernel<7.0.0",
+    "pre-commit>=4.0",
+    "ruff>=0.14",
+    "pytest>=8.0",
+    "nbstripout>=0.8.1",
+    "jupyter>=1.0",
+    "ipywidgets>=8.0",
     "watermark>=2.5.0",
 ]
