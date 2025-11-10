@@ -5,8 +5,7 @@ how it can be used for causal feature selection
 
 ## Setup
 
-🤗 [Graphs](https://huggingface.co/datasets/CSE472-blanket-challenge/phase1-graphs)
-🤗 [Dataset](https://huggingface.co/datasets/CSE472-blanket-challenge/phase1-dataset)
+🤗 [Graphs](https://huggingface.co/datasets/CSE472-blanket-challenge/phase1-graphs) | 🤗 [Dataset](https://huggingface.co/datasets/CSE472-blanket-challenge/phase1-dataset)
 
 - Hugging Face Access Token required
 - Set up a python environment using uv
@@ -29,7 +28,7 @@ how it can be used for causal feature selection
 3. What's the relationship of size of Markov Blanket and density of the graph? (answer 2)
 4. Is dedicated causal feature selection method (IAMB) working better than causal discovery methods?
 
-### Bonus
+## Bonus (5 points)
 
 1. Implement a specialized causal feature selection method (IAMB)
    - [bnlearn](https://github.com/cran/bnlearn) implements IAMB, fastIAMB. Using [rpy2](https://rpy2.github.io/)

@@ -17,5 +17,8 @@ machine learning with DoWhy, EconML, PyTorch and more. Packt Publishing Ltd, 202
 
 [6] [A Shift in Perspective on Causality in Domain Generalization](https://arxiv.org/abs/2508.12798)
 
+[7] Bareinboim, Elias.
+["Causal Artificial Intelligence: A Roadmap for Building Causally Intelligent Systems."](https://causalai-book.net/)
+
 ---
 *: after paywall
