@@ -9,9 +9,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- [feature]: Release Lab 2
-- [feature]: Release Dataset 2
-- [chore]: Release Project Evaluation and Rubric
+- [feature]: Release [Lab 3](/labs/03_markov_blanket_ood/README.md)
+- [feature]: Release Dataset 2: OOD Dataset
+- [project]: Release Project [Evaluation Criteria](/docs/EVALUATION.md)
+
+## [0.2.0] - 2025-11-09
+
+### Added
+
+- [feature]: Release Lab 2 [materials](/labs/02_causal_inference/lab2.ipynb)
+
+### Changed
+
+- [feature]: `blanket` package improvements on models
+- [feature]: Bump `blanket` to `0.1.0`
+- [dataset]: Update [Phase1 Dataset](https://huggingface.co/datasets/CSE472-blanket-challenge/phase1-dataset)
 
 ## [0.1.1] - 2025-11-09
 
@@ -19,11 +31,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - [feature]: Release [Graph Dataset](https://huggingface.co/datasets/CSE472-blanket-challenge/phase1-graphs)
 - [feature]: Release `blanket` package
-- [chore]: Release [QUESTIONNAIRE](docs/QUESTIONNAIRE.md)
+- [chore]: Release [QUESTIONNAIRE](/docs/QUESTIONNAIRE.md)
 
 ### Changed
 
-- [feature]: Lab 1 solution
+- [feature]: [Lab 1 solution](/labs/01_causal_discovery/lab1.ipynb)
 - [dataset]: Update [Phase1 Dataset](https://huggingface.co/datasets/CSE472-blanket-challenge/phase1-dataset)
 
 ## [0.1.0] - 2025-10-22

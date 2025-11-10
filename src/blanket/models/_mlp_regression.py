@@ -5,14 +5,13 @@ from typing import Any
 import numpy as np
 from sklearn.linear_model import Lasso, LassoCV
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
-from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPRegressor
 from sklearn.preprocessing import StandardScaler
 
 
 def mlp_regression(
-    X: np.ndarray,
-    y: np.ndarray,
+    train: tuple[np.ndarray, np.ndarray],
+    test: tuple[np.ndarray, np.ndarray],
     feature_mask: np.ndarray | None = None,
     seed: int = 42,
     hidden_layer_sizes: tuple[int, ...] = (100,),
@@ -22,14 +21,14 @@ def mlp_regression(
 
     Parameters
     ----------
-    X : np.ndarray
-        Feature matrix of shape (n_samples, n_features).
-    y : np.ndarray
-        Target variable of shape (n_samples,).
+    train : tuple[np.ndarray, np.ndarray]
+        Training dataset as (X_train, y_train).
+    test : tuple[np.ndarray, np.ndarray]
+        Test dataset as (X_test, y_test).
     feature_mask : np.ndarray
         Boolean mask for features to use.
     seed : int, default=42
-        Random seed for train/test split and model.
+        Random seed for model.
     hidden_layer_sizes : tuple[int, ...], default=(100,)
         Number of neurons in each hidden layer.
     **model_kwargs
@@ -48,15 +47,13 @@ def mlp_regression(
         - 'predictions': Predictions on test set
         - 'truths': True values on test set
     """
+    X_train, y_train = train
+    X_test, y_test = test
+
     if feature_mask is None:
-        feature_mask = np.ones(X.shape[1], dtype=bool)
+        feature_mask = np.ones(X_train.shape[1], dtype=bool)
     feature_mask = np.asarray(feature_mask, dtype=bool)
     assert np.sum(feature_mask) > 0, "No features selected in feature_mask."
-
-    # Train/test split
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=seed
-    )
 
     # Scale features
     scaler = StandardScaler()
@@ -86,15 +83,15 @@ def mlp_regression(
         "mae": mae,
         "r2": r2,
         "n_features": np.sum(feature_mask),  # num of features used for prediction
+        "feature_mask": feature_mask,
         "predictions": y_pred,
         "truths": y_test,
     }
 
 
 def mlp_l1_regression(
-    X: np.ndarray,
-    y: np.ndarray,
-    feature_mask: np.ndarray | None = None,
+    train: tuple[np.ndarray, np.ndarray],
+    test: tuple[np.ndarray, np.ndarray],
     alpha: float | None = None,
     seed: int = 42,
     threshold: float = 1e-5,
@@ -108,16 +105,14 @@ def mlp_l1_regression(
 
     Parameters
     ----------
-    X : np.ndarray
-        Feature matrix of shape (n_samples, n_features).
-    y : np.ndarray
-        Target variable of shape (n_samples,).
-    feature_mask : np.ndarray, optional
-        Boolean mask for initial feature selection. If None, uses all features.
+    train : tuple[np.ndarray, np.ndarray]
+        Training dataset as (X_train, y_train).
+    test : tuple[np.ndarray, np.ndarray]
+        Test dataset as (X_test, y_test).
     alpha : float, optional
         L1 regularization strength for feature selection. If None, uses LassoCV.
     seed : int, default=42
-        Random seed for train/test split and models.
+        Random seed for models.
     threshold : float, default=1e-5
         Threshold for considering a Lasso coefficient as non-zero.
     hidden_layer_sizes : tuple[int, ...], default=(100,)
@@ -142,16 +137,8 @@ def mlp_l1_regression(
         - 'truths': True values on test set
         - 'alpha': Alpha value used for L1 selection
     """
-    # Apply initial feature mask if provided
-    if feature_mask is None:
-        feature_mask = np.ones(X.shape[1], dtype=bool)
-    feature_mask = np.asarray(feature_mask, dtype=bool)
-    assert np.sum(feature_mask) > 0, "No features selected in feature_mask."
-
-    # Train/test split
-    X_train, X_test, y_train, y_test = train_test_split(
-        X[:, feature_mask], y, test_size=0.2, random_state=seed
-    )
+    X_train, y_train = train
+    X_test, y_test = test
 
     # Scale features
     scaler = StandardScaler()
@@ -194,10 +181,6 @@ def mlp_l1_regression(
     mae = mean_absolute_error(y_test, y_pred)
     r2 = r2_score(y_test, y_pred)
 
-    # Map L1 selection back to original feature space
-    full_selected = np.zeros(X.shape[1], dtype=bool)
-    full_selected[feature_mask] = l1_selected
-
     return {
         "model": mlp,
         "scaler": scaler,
@@ -206,7 +189,7 @@ def mlp_l1_regression(
         "mae": mae,
         "r2": r2,
         "n_features": np.sum(l1_selected),  # num of features used for prediction
-        "selected_features": full_selected,
+        "feature_mask": l1_selected,
         "predictions": y_pred,
         "truths": y_test,
         "alpha": best_alpha,
