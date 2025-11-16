@@ -1,0 +1,32 @@
+---
+task_categories:
+    - tabular-regression
+configs:
+    - config_name: default
+      data_files: "metadata.parquet"
+      default: true
+---
+# Dataset
+
+Generated dataset with {{ dataset_count }} configurations.
+
+## Configuration
+
+```yaml
+{{ config_yaml }}
+```
+
+## Load data
+
+```python
+from huggingface_hub import snapshot_download
+from datasets import load_dataset
+from blanket.datasets import load_data
+
+path_to_data = snapshot_download(repo_id="CSE472-blanket-challenge/{{ dataset_name }}", repo_type="dataset")
+
+md = load_dataset(path_to_data, split='train')
+
+example_data_id = md[0]['data_id']
+X_train, y_train, X_test, y_test, metadata = load_data(path_to_data, data_id=example_data_id, include_metadata=True)
+```

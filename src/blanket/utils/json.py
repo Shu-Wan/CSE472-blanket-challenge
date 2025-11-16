@@ -54,7 +54,7 @@ def serialize(obj: Any) -> str:
     )
 
 
-def read_json(file_path):
+def read_json(file_path: str | Path):
     """
     Reads data from a JSON or JSONL file.
 
@@ -65,6 +65,7 @@ def read_json(file_path):
         A dictionary or a list, depending on the file content.
         Returns a list of dictionaries for JSONL files.
     """
+    file_path = str(file_path)
     try:
         with open(file_path, "r", encoding="utf-8") as f:
             if file_path.endswith(".jsonl"):
@@ -85,7 +86,7 @@ def read_json(file_path):
         return None
 
 
-def save_json(data, file_path, indent: int = 2):
+def save_json(data, file_path: str | Path, indent: int = 2):
     """
     Saves data to a JSON or JSONL file.
 
@@ -96,7 +97,7 @@ def save_json(data, file_path, indent: int = 2):
         indent (int, optional): Indentation for JSON formatting.
                                 Only applies to .json, not .jsonl.
     """
-    file_path = str(Path(file_path))
+    file_path = str(file_path)
 
     try:
         if file_path.endswith(".jsonl"):

@@ -42,7 +42,7 @@ The Markov Blanket is having an existential crisis.
 - Complete [Lab2](/labs/02_markov_blanket_iid)
 - See [Lab2 README](/labs/02_markov_blanket_iid/README.md) for details
 
-## Phase 3 (Nov 6 – Nov 12, 2025) (To be released)
+## Phase 3 (Nov 6 – Nov 12, 2025)
 
 *Beyond the Markov Blanket*
 
@@ -51,10 +51,15 @@ So… what's beyond the MB?
 - Test whether MB is still useful in OOD settings.
 - Propose new approaches to do causal feature selection for OOD scenarios.
 
-## Final Evaluation (Nov 13 – Nov 27, 2025) (To be released)
+- Complete [Lab3](/labs/03_markov_blanket_ood/)
+- See [Lab3 README](/labs/03_markov_blanket_ood/README.md) for details
+
+## Final Evaluation (Nov 13 – Nov 27, 2025)
 
 *Enter the Challenge*
 
 Your final test has come. We've seen the rise and fall of MB in IID and OOD settings.
 
 Build a model that performs feature selection across environments without sacrificing predictive performance.
+
+- Read [Lab3 README](/labs/04_final/README.md) for implementation instructions and evaluation details

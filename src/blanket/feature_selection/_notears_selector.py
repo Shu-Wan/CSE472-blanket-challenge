@@ -5,7 +5,7 @@ from typing import Any
 import numpy as np
 from castle.algorithms import Notears
 
-from blanket.graph import markov_blanket
+from blanket.graph import get_markov_blanket
 
 from ._utils import sanitize_cpdag
 
@@ -101,7 +101,7 @@ def notears_selector(
     target_idx = X.shape[1]
 
     # Extract Markov blanket of the target
-    feature_mask = markov_blanket(adjmat, target_idx)
+    feature_mask = get_markov_blanket(adjmat, target_idx)
 
     # Remove the target node from the mask to get only feature indices
     feature_mask = np.delete(feature_mask, target_idx)

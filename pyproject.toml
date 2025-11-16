@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "blanket"
-version = "0.1.0"
-description = "Blanket Challenge"
+version = "0.2.0"
+description = "Blanket ML project"
 requires-python = "==3.12.*"
 dependencies = [
     "networkx>=3.0",
@@ -16,9 +16,11 @@ dependencies = [
     "pyprojroot>=0.3.0",
     "matplotlib>=3.7",
     "pandas>=2.0",
-    "causal-learn>=0.1.4.3",
     "gcastle>=1.0.4",
     "torch>=2.7.0",
+    "scipy>=1.16.2",
+    "scikit-learn>=1.7.2",
+    "umap-learn>=0.5.9.post2",
 ]
 
 [tool.setuptools.packages.find]

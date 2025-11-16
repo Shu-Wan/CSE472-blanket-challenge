@@ -9,15 +9,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- [feature]: Release [Lab 3](/labs/03_markov_blanket_ood/README.md)
-- [feature]: Release Dataset 2: OOD Dataset
+- [dataset]: Release 🤗 [Final Dataset](https://huggingface.co/datasets/CSE472-blanket-challenge/final-dataset)
+- [project]: Release [Final Project](/labs/04_final/README.md)
+- [project]: Release [Report Template](/docs/REPORT.md)
+
+## [0.3.0] - 2025-11-16
+
+### Added
+
+- [project]: Release [Lab 3](/labs/03_markov_blanket_ood/README.md)
+- [dataset]: Release 🤗 Dataset: [OOD Dataset](https://huggingface.co/datasets/CSE472-blanket-challenge/phase3-dataset)
 - [project]: Release Project [Evaluation Criteria](/docs/EVALUATION.md)
+- [feature]: `blanket` package: Add datasets generation module
+
+### Changed
+
+- [feature]: `blanket` package bump to `0.2.0`
+- [misc]: typo fixes in Lab 1 and Lab 2
+- [project]: Update [schedule](docs/SCHEDULE.md)
 
 ## [0.2.0] - 2025-11-09
 
 ### Added
 
-- [feature]: Release Lab 2 [materials](/labs/02_causal_inference/lab2.ipynb)
+- [project]: Release [Lab 2](/labs/02_causal_inference/lab2.ipynb)
 
 ### Changed
 
@@ -29,13 +44,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- [feature]: Release [Graph Dataset](https://huggingface.co/datasets/CSE472-blanket-challenge/phase1-graphs)
+- [dataset]: Release [Graph Dataset](https://huggingface.co/datasets/CSE472-blanket-challenge/phase1-graphs)
 - [feature]: Release `blanket` package
 - [chore]: Release [QUESTIONNAIRE](/docs/QUESTIONNAIRE.md)
 
 ### Changed
 
-- [feature]: [Lab 1 solution](/labs/01_causal_discovery/lab1.ipynb)
+- [project]: [Lab 1 solution](/labs/01_causal_discovery/lab1.ipynb)
 - [dataset]: Update [Phase1 Dataset](https://huggingface.co/datasets/CSE472-blanket-challenge/phase1-dataset)
 
 ## [0.1.0] - 2025-10-22

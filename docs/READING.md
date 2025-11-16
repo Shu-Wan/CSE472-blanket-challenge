@@ -20,5 +20,16 @@ machine learning with DoWhy, EconML, PyTorch and more. Packt Publishing Ltd, 202
 [7] Bareinboim, Elias.
 ["Causal Artificial Intelligence: A Roadmap for Building Causally Intelligent Systems."](https://causalai-book.net/)
 
+[8] [PFNs](https://www.automl.org/pfns/)
+
+[9] Müller, Samuel, et al. "Transformers can do bayesian inference." arXiv preprint arXiv:2112.10510
+(2021).
+
+[10] Hollmann, Noah, et al. "Accurate predictions on small data with a tabular foundation model."
+Nature 637.8045 (2025): 319-326.
+
+[11] Zhang, Xingxuan, et al. "LimiX: Unleashing structured-data modeling capability for generalist
+intelligence." arXiv preprint arXiv:2509.03505 (2025).
+
 ---
 *: after paywall
