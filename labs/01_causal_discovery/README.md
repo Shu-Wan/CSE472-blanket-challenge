@@ -5,7 +5,7 @@ how it can be used for causal feature selection
 
 ## Setup
 
-🤗 [Graphs](https://huggingface.co/datasets/CSE472-blanket-challenge/phase1-graphs) | 🤗 [Dataset](https://huggingface.co/datasets/CSE472-blanket-challenge/phase1-dataset)
+🤗 [Graphs](https://huggingface.co/datasets/CSE472-blanket-challenge/phase1-graphs) | 🤗 [Datasets](https://huggingface.co/datasets/CSE472-blanket-challenge/phase1-dataset)
 
 - Hugging Face Access Token required
 - Set up a python environment using uv

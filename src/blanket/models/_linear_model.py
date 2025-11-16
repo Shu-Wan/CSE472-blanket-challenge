@@ -65,6 +65,8 @@ def linear_regression(
     rmse = np.sqrt(mean_squared_error(y_test, y_pred))
     mae = mean_absolute_error(y_test, y_pred)
     r2 = r2_score(y_test, y_pred)
+    residuals = y_test - y_pred
+    std = np.std(residuals, ddof=1)  # Sample standard deviation
 
     return {
         "model": model,
@@ -72,6 +74,7 @@ def linear_regression(
         "rmse": rmse,
         "mae": mae,
         "r2": r2,
+        "std": std,
         "n_features": np.sum(feature_mask),
         "feature_mask": feature_mask,
         "predictions": y_pred,
@@ -169,6 +172,8 @@ def linear_l1_regression(
     rmse = np.sqrt(mean_squared_error(y_test, y_pred))
     mae = mean_absolute_error(y_test, y_pred)
     r2 = r2_score(y_test, y_pred)
+    residuals = y_test - y_pred
+    std = np.std(residuals, ddof=1)  # Sample standard deviation
 
     return {
         "model": final_model,
@@ -177,6 +182,7 @@ def linear_l1_regression(
         "rmse": rmse,
         "mae": mae,
         "r2": r2,
+        "std": std,
         "n_features": np.sum(l1_selected),  # feature used in prediction
         "feature_mask": l1_selected,
         "predictions": y_pred,

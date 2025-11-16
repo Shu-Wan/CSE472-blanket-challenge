@@ -7,19 +7,10 @@ and consistent seeding throughout the project.
 """
 
 import random
-import warnings
 from typing import Optional
 
 import numpy as np
-
-# Optional PyTorch import
-try:
-    import torch
-
-    TORCH_AVAILABLE = True
-except ImportError:
-    TORCH_AVAILABLE = False
-    torch = None
+import torch
 
 
 class GlobalRNG:
@@ -54,14 +45,13 @@ class GlobalRNG:
         random.seed(seed)
 
         # Set PyTorch seed if available
-        if TORCH_AVAILABLE:
-            torch.manual_seed(seed)  # type: ignore
-            if torch.cuda.is_available():  # type: ignore
-                torch.cuda.manual_seed(seed)  # type: ignore
-                torch.cuda.manual_seed_all(seed)  # type: ignore
-                # For deterministic CUDA operations  # type: ignore
-                torch.backends.cudnn.deterministic = True  # type: ignore
-                torch.backends.cudnn.benchmark = False  # type: ignore
+        torch.manual_seed(seed)
+        if torch.cuda.is_available():
+            torch.cuda.manual_seed(seed)
+            torch.cuda.manual_seed_all(seed)
+            # For deterministic CUDA operations
+            torch.backends.cudnn.deterministic = True
+            torch.backends.cudnn.benchmark = False
 
     def get_seed(self) -> Optional[int]:
         """Get the current seed value."""
@@ -84,7 +74,7 @@ class GlobalRNG:
 
         return np.random.default_rng(seed)
 
-    def torch_generator(self, seed: Optional[int] = None) -> Optional[object]:
+    def torch_generator(self, seed: Optional[int] = None) -> torch.Generator:
         """
         Get a PyTorch Generator instance.
 
@@ -95,15 +85,12 @@ class GlobalRNG:
         Returns:
             PyTorch Generator instance, or None if PyTorch not available
         """
-        if not TORCH_AVAILABLE:
-            warnings.warn("PyTorch not available, returning None")
-            return None
 
         if seed is None and self._seed is not None:
             # Derive a seed from the global seed
             seed = (self._seed + hash("torch_generator")) % (2**32)
 
-        generator = torch.Generator()  # type: ignore
+        generator = torch.Generator()
         if seed is not None:
             generator.manual_seed(seed)
         return generator
@@ -118,9 +105,7 @@ class GlobalRNG:
         # Do not call `np.random.seed()` to avoid mutating global NumPy state.
         # Consumers should create fresh `Generator` instances via `get_numpy_rng()`.
 
-        # Reset PyTorch to entropy
-        if TORCH_AVAILABLE:
-            torch.seed()  # type: ignore
+        torch.seed()
 
 
 # Global instance for project-wide use
@@ -170,7 +155,7 @@ def get_numpy_rng(seed: Optional[int] = None) -> np.random.Generator:
     return global_rng.numpy_rng(seed)
 
 
-def get_torch_generator(seed: Optional[int] = None) -> Optional[object]:
+def get_torch_generator(seed: Optional[int] = None) -> torch.Generator:
     """
     Get a PyTorch Generator instance with optional seed.
 
@@ -252,12 +237,11 @@ def _example_usage():
     print(f"rng.normal(0, 1, 3): {rng.normal(0, 1, 3)}")
 
     # PyTorch if available
-    if TORCH_AVAILABLE:
-        print("\n5. PyTorch random:")
-        print(f"torch.randn(3): {torch.randn(3)}")  # type: ignore
+    print("\n5. PyTorch random:")
+    print(f"torch.randn(3): {torch.randn(3)}")
 
-        generator = get_torch_generator(seed=456)
-        print(f"torch.randn(3, generator=gen): {torch.randn(3, generator=generator)}")  # type: ignore
+    generator = get_torch_generator(seed=456)
+    print(f"torch.randn(3, generator=gen): {torch.randn(3, generator=generator)}")
 
     # Temporary seed context
     print("\n6. Temporary seed context:")

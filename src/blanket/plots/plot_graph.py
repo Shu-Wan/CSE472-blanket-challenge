@@ -12,7 +12,7 @@ from matplotlib import pyplot as plt
 from matplotlib.colors import BoundaryNorm, to_rgb
 from matplotlib.lines import Line2D
 
-from blanket.graph import markov_blanket as compute_markov_blanket
+from blanket.graph import get_markov_blanket as compute_markov_blanket
 from blanket.utils import validate_adjmat
 
 # Color scheme for graph visualization
