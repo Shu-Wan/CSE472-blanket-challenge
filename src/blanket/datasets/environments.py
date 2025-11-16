@@ -171,7 +171,7 @@ def _linear_projection(
     if feature_mask is None:
         feature_mask = np.ones(X.shape[1], dtype=bool)
 
-    X = X * feature_mask
+    X = X[:, feature_mask]
 
     if method == "random":
         # Random projection: w ~ N(0, I_d), normalize to ||w|| = 1
