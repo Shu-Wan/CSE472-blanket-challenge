@@ -24,3 +24,7 @@
 *.css text eol=lf
 *.js text eol=lf
 
+
+*.ipynb filter=nbstripout
+*.zpln filter=nbstripout
+*.ipynb diff=ipynb
