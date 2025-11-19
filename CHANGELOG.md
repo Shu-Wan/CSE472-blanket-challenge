@@ -10,8 +10,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - [dataset]: Release 🤗 [Final Dataset](https://huggingface.co/datasets/CSE472-blanket-challenge/final-dataset)
-- [project]: Release [Final Project](/labs/04_final/README.md)
+- [project]: Release [Final Project Baseline Solution](/labs/04_final/final.ipynb)
 - [project]: Release [Report Template](/docs/REPORT.md)
+
+## [0.4.0] - 2025-11-18
+
+### Added
+
+- [project]: Release [Final Project](/labs/04_final/README.md)
 
 ## [0.3.0] - 2025-11-16
 
