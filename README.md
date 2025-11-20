@@ -41,7 +41,7 @@ I already added required environment settings in `pyproject.toml`. You can use u
 ```bash
 uv venv  # start a virtual environment
 source .venv/bin/activate  # activate the virtual environment
-uv sync  # sync with pyproject.toml
+uv sync --all-groups # sync with pyproject.toml
 ```
 
 conda, pip, or other environment management tools can also be used.
