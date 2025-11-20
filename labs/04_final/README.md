@@ -261,6 +261,27 @@ $$
 \text{Score}_{first}}
 $$
 
+## Implementation
+
+Example: [final.ipynb](final.ipynb)
+Hardware: Single A100 on Sol
+
+Environment setup:
+
+```bash
+uv sync --all-groups
+
+uv pip install -e .
+```
+
+Environement variables (if needed):
+
+```bash
+export TABPFN_CACHE_DIR=/path/to/tabpfn_cache
+export TABPFN_DISABLE_TELEMETRY=1
+export PYTORCH_ALLOC_CONF=max_split_size_mb:512
+```
+
 ## Resources
 
 ### TabPFN Documentation

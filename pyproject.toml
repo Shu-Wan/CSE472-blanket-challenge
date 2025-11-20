@@ -1,17 +1,22 @@
 [build-system]
-requires = ["setuptools>=80", "wheel"]
+requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "blanket"
-version = "0.2.0"
+version = "0.3.0"
+authors = [
+    { name = "Shu Wan" }
+]
+readme = "README.md"
 description = "Blanket ML project"
 requires-python = "==3.12.*"
+
 dependencies = [
     "networkx>=3.0",
     "numpy>=2.0",
     "pydantic>=2.0",
-    "datasets>=4.2.0",
+    "datasets==4.0.0",
     "python-dotenv>=1.1.1",
     "pyprojroot>=0.3.0",
     "matplotlib>=3.7",
@@ -19,18 +24,26 @@ dependencies = [
     "gcastle>=1.0.4",
     "torch>=2.7.0",
     "scipy>=1.16.2",
-    "scikit-learn>=1.7.2",
+    "scikit-learn<1.7",
     "umap-learn>=0.5.9.post2",
+    "tabpfn>=6.0.6",
+    "tabpfn-extensions[all]",
 ]
 
 [tool.setuptools.packages.find]
 where = ["src"]
+exclude = ["scripts", "tests"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
 
 [tool.uv.sources]
 torch = [
     { index = "pytorch-cpu", marker = "sys_platform != 'linux'" },
     { index = "pytorch-cu128", marker = "sys_platform == 'linux'" },
 ]
+tabpfn-extensions = { git = "https://github.com/PriorLabs/tabpfn-extensions.git" }
 
 [[tool.uv.index]]
 name = "pytorch-cpu"
