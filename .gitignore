@@ -43,8 +43,8 @@ temp/
 # HuggingFace cache
 .cache/
 
-# raw data
-*.csv
+# # raw data
+# *.csv
 
 # python package distribution files
 *.egg-info/

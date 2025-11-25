@@ -1,0 +1,9 @@
+numpy
+pandas
+torch               # For device detection (CPU/GPU)
+datasets            # Hugging Face datasets
+tabpfn              # Main TabPFN library
+tabpfn-extensions   # For embedding extraction
+scikit-learn        # MLPClassifier, Ridge, KFold, mean_squared_error
+tqdm                # Progress bar (used in embedding extraction code)
+warnings            # Standard library, no need to include
