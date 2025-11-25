@@ -466,10 +466,12 @@ class BeyondTheBlanket:
 
         overall_summary = {}
         if per_task_rmse:
+            avg_rmse = float(np.mean(per_task_rmse))
+            avg_jaccard = float(np.mean(per_task_jacc))
             overall_summary = {
-                "avg_rmse": float(np.mean(per_task_rmse)),
-                "avg_jaccard": float(np.mean(per_task_jacc)),
-                "avg_combined_score": float(np.mean(per_task_combined)),
+                "avg_rmse": avg_rmse,
+                "avg_jaccard": avg_jaccard,
+                "score": float(avg_rmse * (1.0 - avg_jaccard)),
             }
 
         update_results_file(

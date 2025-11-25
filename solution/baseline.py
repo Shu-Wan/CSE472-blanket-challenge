@@ -6,12 +6,13 @@ from pathlib import Path
 import numpy as np
 import torch
 import yaml
-from blanket.metrics import jaccard_score, rmse
 from datasets import load_dataset
 from dotenv import load_dotenv
 from huggingface_hub import hf_hub_download
 from tabpfn import TabPFNRegressor
 from tabpfn.model_loading import ModelSource
+
+from blanket.metrics import jaccard_score, rmse
 
 load_dotenv(override=True)
 
@@ -25,6 +26,7 @@ def evaluate_baseline(config_path: str):
     )
 
     results = {}
+    all_task_metrics = []  # Collect all task metrics across all dimensions
     model_ckpt_path = _resolve_model_checkpoint(config["tabpfn"]["model_path"])
     reg = TabPFNRegressor(
         model_path=model_ckpt_path,
@@ -61,18 +63,27 @@ def evaluate_baseline(config_path: str):
             jacc = float(jaccard_score(blanket_true, blanket_pred))
             combined = rmse_val * (1.0 - jacc)
 
-            dim_metrics.append(
-                {"rmse": rmse_val, "jaccard": jacc, "combined": combined}
-            )
+            task_result = {"rmse": rmse_val, "jaccard": jacc, "combined": combined}
+            dim_metrics.append(task_result)
+            all_task_metrics.append(task_result)
 
         if dim_metrics:
+            avg_rmse = float(np.mean([m["rmse"] for m in dim_metrics]))
+            avg_jaccard = float(np.mean([m["jaccard"] for m in dim_metrics]))
             results[feat_dim] = {
-                "avg_rmse": float(np.mean([m["rmse"] for m in dim_metrics])),
-                "avg_jaccard": float(np.mean([m["jaccard"] for m in dim_metrics])),
-                "avg_combined_score": float(
-                    np.mean([m["combined"] for m in dim_metrics])
-                ),
+                "avg_rmse": avg_rmse,
+                "avg_jaccard": avg_jaccard,
+                "score": float(avg_rmse * (1.0 - avg_jaccard)),
             }
+
+    if all_task_metrics:
+        overall_avg_rmse = float(np.mean([m["rmse"] for m in all_task_metrics]))
+        overall_avg_jaccard = float(np.mean([m["jaccard"] for m in all_task_metrics]))
+        results["overall"] = {
+            "avg_rmse": overall_avg_rmse,
+            "avg_jaccard": overall_avg_jaccard,
+            "score": float(overall_avg_rmse * (1.0 - overall_avg_jaccard)),
+        }
 
     return results
 
@@ -130,11 +141,11 @@ def main():
 
     for feat_dim, metrics in results.items():
         logging.info(
-            "n_features=%s | avg_rmse=%.4f | avg_jaccard=%.4f | avg_combined=%.4f",
+            "n_features=%s | avg_rmse=%.4f | avg_jaccard=%.4f | score=%.4f",
             feat_dim,
             metrics["avg_rmse"],
             metrics["avg_jaccard"],
-            metrics["avg_combined_score"],
+            metrics["score"],
         )
 
 
