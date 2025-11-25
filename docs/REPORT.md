@@ -27,7 +27,7 @@ The final report should be in pdf format and submit to canvas.
 
 ### 1.2 High-Level Approach
 
-The strategy we found to work was to extract a subset of the features and then run the TabPFN classifier on them. This gave us high accuracy predictions of the Markov blanket.
+The strategy we found to work was to extract a subset of the features and then run the TabPFN classifier on them. This gave us high accuracy predictions of the Markov blanket. For the second stage, we implemented a regressor to predict the values of target Y.
 
 ---
 
