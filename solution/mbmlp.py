@@ -121,8 +121,12 @@ class MBMLPModel:
         y_train_tensor = torch.from_numpy(y_train).float()
 
         train_dataset = TensorDataset(X_train_tensor, y_train_tensor)
+        
+        g = torch.Generator()
+        g.manual_seed(42)
+        
         train_loader = DataLoader(
-            train_dataset, batch_size=self.batch_size, shuffle=True
+            train_dataset, batch_size=self.batch_size, shuffle=True, generator=g
         )
 
         if X_val is not None:

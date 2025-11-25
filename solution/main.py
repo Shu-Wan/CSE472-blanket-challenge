@@ -427,14 +427,12 @@ class BeyondTheBlanket:
                 y_pred = eval_reg.predict(X_test_mb)
 
                 rmse_val = float(rmse(y_test_task, y_pred))
-                combined_score = float(rmse_val * (1.0 - jacc))
 
                 dim_results.append(
                     {
                         "data_id": task["data_id"],
                         "rmse": rmse_val,
                         "jaccard": jacc,
-                        "combined_score": combined_score,
                         "markov_blanket_pred": mb_pred_mask.astype(int).tolist(),
                         "y_pred": y_pred.tolist(),
                     }
@@ -442,27 +440,21 @@ class BeyondTheBlanket:
 
             all_rmse = float(np.mean([r["rmse"] for r in dim_results]))
             all_jacc = float(np.mean([r["jaccard"] for r in dim_results]))
-            avg_combined_score = float(
-                np.mean([r["combined_score"] for r in dim_results])
-            )
             final_score = float(all_rmse * (1.0 - all_jacc))
 
             all_results[feat_dim] = {
                 "per_task": dim_results,
                 "avg_rmse": all_rmse,
                 "avg_jaccard": all_jacc,
-                "avg_combined_score": avg_combined_score,
                 "score": final_score,
             }
 
         per_task_rmse = []
         per_task_jacc = []
-        per_task_combined = []
         for dim_metrics in all_results.values():
             for task_metrics in dim_metrics["per_task"]:
                 per_task_rmse.append(task_metrics["rmse"])
                 per_task_jacc.append(task_metrics["jaccard"])
-                per_task_combined.append(task_metrics["combined_score"])
 
         overall_summary = {}
         if per_task_rmse:

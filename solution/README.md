@@ -11,7 +11,7 @@ The solution implements a three-stage pipeline:
 5. **Final Prediction**: Make predictions on the submission dataset using the trained models
 
 <div align="center">
-<img src="assets/pipeline.png" alt="Pipeline Diagram" width="400">
+<img src="https://media.githubusercontent.com/media/Shu-Wan/CSE472-blanket-challenge/d12c4f910e043981b49c84a1c558939a6a3b453a/solution/assets/pipeline.png" alt="Pipeline Diagram" width="400">
 </div>
 
 ## Files

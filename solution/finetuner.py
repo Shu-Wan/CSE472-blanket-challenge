@@ -2,10 +2,11 @@ from __future__ import annotations
 
 from collections.abc import Sequence
 from copy import deepcopy
+from functools import partial
 from typing import Any, Mapping
 
 import numpy as np
-from blanket.metrics import rmse
+import torch
 from sklearn.model_selection import train_test_split
 from tabpfn import TabPFNRegressor
 from tabpfn.finetune_utils import clone_model_for_evaluation
@@ -13,6 +14,8 @@ from tabpfn.utils import meta_dataset_collator
 from torch.optim import Adam
 from torch.utils.data import ConcatDataset, DataLoader, Dataset
 from tqdm import tqdm
+
+from blanket.metrics import rmse
 
 TaskRecord = Mapping[str, Any]
 
@@ -101,6 +104,8 @@ class TabPFNFineTuner:
 
         self.val_tasks = val_list
 
+        train_test_split_seeded = partial(train_test_split, random_state=42)
+
         meta_datasets = []
         for d in train_list:
             X_train = np.asarray(d["X_train"])
@@ -109,7 +114,7 @@ class TabPFNFineTuner:
             ds = self.regressor.get_preprocessed_datasets(
                 X_train,
                 y_train,
-                train_test_split,
+                train_test_split_seeded,
                 self.max_samples,
             )
             meta_datasets.append(ds)
@@ -119,11 +124,15 @@ class TabPFNFineTuner:
         else:
             self.datasets = ConcatDataset(meta_datasets)
 
+        g = torch.Generator()
+        g.manual_seed(42)
+
         self.loader = DataLoader(
             self.datasets,
             batch_size=1,
             shuffle=True,
             collate_fn=meta_dataset_collator,
+            generator=g,
         )
 
     def fine_tune(self) -> None:
