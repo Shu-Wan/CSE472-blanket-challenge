@@ -44,7 +44,7 @@ temp/
 .cache/
 
 # raw data
-*.csv
+#*.csv
 
 # python package distribution files
 *.egg-info/
