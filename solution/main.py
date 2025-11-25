@@ -10,24 +10,24 @@ import matplotlib.pyplot as plt
 import numpy as np
 import torch
 import yaml
-from blanket.metrics import jaccard_score, rmse
 from datasets import load_dataset
 from dotenv import load_dotenv
+from finetuner import TabPFNFineTuner
+from generator import TabPFNEmbeddingGenerator
 from huggingface_hub import hf_hub_download
+from mbmlp import MBMLPModel
 from tabpfn import TabPFNRegressor
 from tabpfn.finetune_utils import clone_model_for_evaluation
 from tabpfn.model_loading import ModelSource
 from tqdm import tqdm
-
-from finetuner import TabPFNFineTuner
-from generator import TabPFNEmbeddingGenerator
-from mbmlp import MBMLPModel
 from util import (
     create_run_directory,
     get_run_filepath,
     save_run_info,
     update_results_file,
 )
+
+from blanket.metrics import jaccard_score, rmse
 
 
 @dataclass
@@ -350,6 +350,10 @@ class BeyondTheBlanket:
                 batch_size=self.mb_batch_size,
             )
 
+            logger.info(
+                f"Training MBMLP for dim={feat_dim}: input_dim={emb_dim}, mb_dim={mb_dim}, "
+                f"hidden_sizes={self.mb_hidden_sizes}, epochs={self.mb_epochs}, batch_size={self.mb_batch_size}"
+            )
             mb_nn.fit(
                 X_emb_train, y_mb_train, val_fraction=self.mb_val_fraction, shuffle=True
             )

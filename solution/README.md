@@ -91,7 +91,7 @@ This will:
 2. Fine-tune TabPFN for each feature dimension
 3. Train Markov Blanket MLPs
 4. Tune thresholds on holdout data
-5. Generate predictions for submission
+5. Generate predictions for submission in `submission.csv` with `data_id`, `y_pred`, and `markov_blanket_pred` columns
 6. Save all results to a timestamped `runs/` directory
 
 ### Evaluating the Baseline

@@ -32,4 +32,3 @@ threshold_tuning:
   min: 0.2
   max: 0.8
   num_thresholds: 13
-

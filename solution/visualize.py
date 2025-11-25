@@ -9,8 +9,9 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
-from blanket.plots import plot_graph
 from datasets import load_dataset
+
+from blanket.plots import plot_graph
 
 
 def load_task_by_id(split, data_id):
@@ -42,7 +43,6 @@ def main():
     results_path = run_dir / "results.json"
     results = json.loads(results_path.read_text())
 
-    # locate task metrics from results.json
     task_metrics = None
     for feat_dim, dim_data in results["develop_metrics"].items():
         for entry in dim_data["per_task"]:
@@ -59,7 +59,6 @@ def main():
     )
     task = load_task_by_id(develop, args.data_id)
 
-    # convert to numpy
     X_train = np.asarray(task["X_train"])
     X_test = np.asarray(task["X_test"])
     y_test = np.asarray(task["y_test"])
@@ -69,8 +68,10 @@ def main():
     print(
         f"n_features: {task['n_features']} | train samples: {len(X_train)} | test samples: {len(X_test)}"
     )
+
+    combined_score = task_metrics["rmse"] * (1.0 - task_metrics["jaccard"])
     print(
-        f"Recorded metrics: RMSE={task_metrics['rmse']:.4f}, Jaccard={task_metrics['jaccard']:.4f}, Combined={task_metrics['combined_score']:.4f}"
+        f"Recorded metrics: RMSE={task_metrics['rmse']:.4f}, Jaccard={task_metrics['jaccard']:.4f}, Combined={combined_score:.4f}"
     )
 
     output_dir = (
