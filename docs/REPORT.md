@@ -8,11 +8,11 @@ The final report should be in pdf format and submit to canvas.
 
 ---
 
-- **Name**: <!-- Your full name -->
-- **Email**: <!-- Your ASU email -->
+- **Name**: Anton Sazonov / Fredo Guan
+- **Email**: asazono1@asu.edu / fyguan@asu.edu
 - **ASU ID**: <!-- Optional / Last 4 digits -->
 - **Team Name**: <!-- Team / repo name -->
-- **GitHub Repo**: <!-- Link to your team repo / PR -->
+- **GitHub Repo**: 
 - **Hardware Used**: <!-- e.g., RTX 4090 GPU, Colab T4, CPU only, etc. -->
 
 ---
@@ -21,16 +21,13 @@ The final report should be in pdf format and submit to canvas.
 
 ### 1.1 Problem Restatement
 
-- Briefly restate the final project problem in your own words.
-- What are the two main tasks? (regression and Markov Blanket (MB) prediction)
-- What is the evaluation objective (final score formula)?
+- The objective of the project is determining the flow of causality in a network of random variables & using it to predict the target output.
+- The two main tasks are the prediction of the Markov blanket and the target variable.
+- The performance is measured with the RMSE loss and the jaccard score.
 
 ### 1.2 High-Level Approach
 
-- Describe your overall strategy (1–2 paragraphs):
-  - What model(s) did you use (e.g., TabPFN variants, baselines, ensembles)?
-  - How do you use the support set and query set at test time?
-  - How do you obtain MB predictions?
+The strategy we found to work was to extract a subset of the features and then run the TabPFN classifier on them. This gave us high accuracy predictions of the Markov blanket. For the second stage, we implemented a regressor to predict the values of target Y.
 
 ---
 
@@ -160,9 +157,13 @@ which is also rewarded in the overall project evaluation.
 
 ## 7. References & Appendix
 
-References to any papers, libraries, or resources you used.
+References:
+- Yuan, C., & Malone, B. (2013). Learning optimal Bayesian networks: A shortest path perspective. 
+
+
 
 Appendix
+
 
 - Full tables of hyperparameters.
 - Extended ablation results.
