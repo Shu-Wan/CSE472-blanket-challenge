@@ -11,7 +11,7 @@ We formulate our objective as a **meta-learning problem** where the goal is to l
 causal data generating processes to perform two downstream tasks: regression and Markov Blanket
 (MB) discovery.
 
-### Task Distribution and Data Generation Processes
+### Data Generation Process
 
 In our setting, a **task** $\mathcal{T}$ corresponds to a specific dataset generated from a causal
 mechanism. The distribution of tasks $p(\mathcal{T})$ is defined by a hierarchical generative
@@ -54,6 +54,39 @@ Our goal is to predict two outcomes given this support set and a query point $x_
 
 1. **Regression**: Predict the target posterior $p(y_* \mid x_*, \mathcal{D}_{support})$.
 2. **Feature Selection**: Predict the Markov Blanket mask $p(m \mid \mathcal{D}_{support})$.
+
+```mermaid
+flowchart LR
+    subgraph Train["**TRAINING**"]
+        direction TB
+        S1["**Support Set**<br/>(X, y)"]
+        Q1["**Query**<br/>(X, y)"]
+        M1["MB mask: $$ m$$"]
+        L1["$$p(y_* \mid x_*, \mathcal{D}_{support}) \quad | \quad p(m \mid \mathcal{D}_{support})$$"]
+
+        S1 --> P1["Model"]
+        Q1 --> P1
+        P1 --> L1
+        M1 --> P1
+    end
+
+    subgraph Test["**TESTING**"]
+        direction TB
+        S2["**Support Set**<br/>(X, y)"]
+        Q2["**Query**<br/>(X, ?)"]
+
+        S2 --> P2["Model"]
+        Q2 --> P2
+        P2 --> O2["**Outputs**<br/>ŷ and m̂"]
+    end
+
+    Train ==> Test
+
+    style Train fill:#c8e6c9,stroke:#388e3c,stroke-width:2px
+    style Test fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style Q1 fill:#ffcdd2,stroke:#d32f2f
+    style Q2 fill:#e1bee7,stroke:#7b1fa2
+```
 
 ## 2. TabPFN Capabilities
 
@@ -175,24 +208,36 @@ Pros and Cons:
 
 Use TabPFN's interpretability tools to compute feature importance, threshold for MB.
 
+TabPFN use SHAP under the hood, please refer SHAP documentation for more details.
+
 **Approach**:
 
 ```python
-from tabpfn_extensions.interpretability import TabPFNFeatureImportance
-import shap
+from tabpfn_extensions import interpretability
 
+# Initialize and train model
 model = TabPFNRegressor()
 model.fit(X_train, y_train)
 
+
 # Compute SHAP values
-explainer = shap.Explainer(model.predict, X_train)
-shap_values = explainer(X_test)
-feature_importance = np.abs(shap_values.values).mean(axis=0)
+shap_values = interpretability.shap.get_shap_values(
+    estimator=model,
+    test_x=X_test,
+    algorithm="permutation",
+)
+
+# Visualize SHAP values
+interpretability.shap.plot_shap(shap_values)
+
+# reduce to mean absolute SHAP values per feature
+print(shap_values.shape)  # (n_samples, n_features)
+feature_importance = np.mean(np.abs(shap_values), axis=0)  # (n_features,)
 
 # Threshold to binary mask
-k = expected_mb_size  # Or use percentile
+k = top_k  # Or use percentile
 mask = np.zeros(d)
-mask[np.argsort[feature_importance](-k:)] = 1
+mask[np.argsort(feature_importance)[::-1][:k]] = 1
 ```
 
 Pros and Cons:
@@ -210,6 +255,7 @@ Pros and Cons:
 ## Evaluation
 
 We evaluate the model on a set of $N$ unseen testing tasks $\{\mathcal{T}_j\}_{j=1}^N$.
+
 For each task $\mathcal{T}_j$, the dataset is split into a support set and a query set:
 
 - **Support Set**: $\mathcal{D}^{(j)}_{support} = \{(x_i, y_i)\}_{i=1}^k$, used for in-context
@@ -274,7 +320,7 @@ uv sync --all-groups
 uv pip install -e .
 ```
 
-Environement variables (if needed):
+Environement variables:
 
 ```bash
 export TABPFN_CACHE_DIR=/path/to/tabpfn_cache
@@ -283,6 +329,12 @@ export PYTORCH_ALLOC_CONF=max_split_size_mb:512
 ```
 
 ## Resources
+
+### Datasets
+
+- :hugs: [Final Graphs](https://huggingface.co/datasets/CSE472-blanket-challenge/final-graphs)
+- :hugs: [Final Dataset](https://huggingface.co/datasets/CSE472-blanket-challenge/final-dataset)
+- :hugs: [Final Ground Truth](https://huggingface.co/datasets/CSE472-blanket-challenge/final-ground-truth)
 
 ### TabPFN Documentation
 
@@ -297,7 +349,8 @@ export PYTORCH_ALLOC_CONF=max_split_size_mb:512
 
 1. Grinsztajn et al., "Advancing the State of the Art in Tabular Foundation Models"
 2. Hollmann et al., "Accurate predictions on small data with a tabular
-foundation model", doi:10.1038/s41586-024-08328-6
-3. "Does TabPFN Understand Causal Structures?", arXiv:2511.07236
+   foundation model", doi:10.1038/s41586-024-08328-6
+3. Swelam et al. "Does TabPFN Understand Causal Structures?." arXiv preprint
+   arXiv:2511.07236 (2025).
 4. Nastl & Hardt, "Do causal predictors generalize better to new
-domains?", NeurIPS
+   domains?", NeurIPS
