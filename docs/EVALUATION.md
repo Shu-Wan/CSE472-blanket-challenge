@@ -13,12 +13,12 @@ The last commit before the deadline will be evaluated.
 - Everything except the final report should be submitted via PR.
 - For report instructions, see: [REPORT.md](/docs/REPORT.md)
 
-## Points breakdown
+## Points breakdown5
 
 | Item | Points | Type |
 |------|--------|------|
 | Labs | 15 = 5 × 3 | Team Shared ♠️ |
-| Final Project: Implementation | 40 | Team Shared |
+| Final Project: Code | 40 | Team Shared |
 | Final Project: Results | 30 | Team Shared |
 | Final Project: Report | 15 | Personal |
 | Bonus points (each lab) | 15 = 5 × 3 | Team Shared ♠️ |

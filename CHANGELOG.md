@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] - 2025-12-02
+
+- [project] Release [Final Project Evaluation](/labs/05_final_eval/).
+- [dataset] Release 🤗 [Final Ground Truth Dataset](https://huggingface.co/datasets/CSE472-blanket-challenge/final-ground-truth).
+- [bugfix]: fix a bug about evaluation in lab 4 [example](/labs/04_final/final.ipynb).
+- [bugfix]: fix a bug tabpfn interpretability code in [Lab 4](/labs/04_final/README.md).
+
 ## [0.4.1] - 2025-11-19
 
 ### Added

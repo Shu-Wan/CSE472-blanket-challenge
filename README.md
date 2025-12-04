@@ -1,10 +1,38 @@
 <!-- markdownlint-disable-next-line -->
 # <img src="docs/logo.png" alt="logo" width="40" style="vertical-align:middle;"/> Beyond the Blanket Challenge
 
-A CSE472 Course Project at Arizona State University
-Taught by [Prof. Huan Liu](https://faculty.engineering.asu.edu/huanliu/) | Mentored by [Shu Wan](https://shu-wan.github.io/)
+![Final leaderboard summary](/labs/05_final_eval/fig/team_metric_summary.png)
+
+<p align="center">
+  <a href="https://huggingface.co/datasets/CSE472-blanket-challenge">🤗 Datasets</a> |
+  <a href="docs/READING.md">📚 Reading</a> |
+  <a href="labs/05_final_eval/README.md">🏆 Final Results</a> |
+  <a href="CHANGELOG.md">📝 Changelog</a>
+</p>
+
+## About
+
+This repository contains the materials and code for the CSE472 (Fall 2025) course
+project "Beyond the Blanket Challenge".
+The project is designed by [Shu Wan](https://shu-wan.github.io/).
+
+The materials here include datasets, evaluation scripts, and a summary of the
+final leaderboard and results.
+
+> [!NOTE]
+>
+> This project is finalized.
 
 ---
+
+## :trophy: Leaderboard
+
+|        Rank         | Group | Members           | Final Score (↓) |
+| :-----------------: | :---: | ----------------- | :-------------: |
+| :1st_place_medal: 1 |  10   | Ang, Muhammed     |  **0.194036**   |
+| :2nd_place_medal: 2 |   8   | Fredo, Anton      |    0.208636     |
+| :3rd_place_medal: 3 |   7   | Dhruv, Sahajpreet |    0.280585     |
+|  :medal_sports: 4   |   1   | Sameera, Tanmayi  |    0.304475     |
 
 ## Overview
 
@@ -121,16 +149,12 @@ All submissions must be your own work
 
 </details>
 
----
+## Disclaimer
 
-<div align="center">
-
-## Questions or Feedback?
-
-**Found an issue? Have suggestions?**
-[Open an issue](https://github.com/Shu-Wan/CSE472-blanket-challenge/issues) in this repository.
-
-</div>
+This project is an independent educational project created for learning and research purposes.
+It is not an official ASU course resource, and it is not affiliated with or
+endorsed by Arizona State University.
+All content, datasets, and code are provided as-is for public educational use.
 
 ---
 

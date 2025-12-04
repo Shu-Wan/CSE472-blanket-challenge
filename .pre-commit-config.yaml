@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.4
+    rev: v0.14.7
     hooks:
       - id: ruff-check
         types_or: [python, pyi]
@@ -28,3 +28,9 @@ repos:
         types: [yaml, python, markdown, toml, text]
       - id: debug-statements
         types: [python]
+
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.8.2
+    hooks:
+      - id: nbstripout
+        args: ['--drop-empty-cells', '--keep-output', '--extra-keys=metadata.celltoolbar cell.metadata.heading_collapsed metadata.kernelspec metadata.language_info.version']
