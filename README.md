@@ -14,10 +14,8 @@
 
 This repository contains the materials and code for the CSE472 (Fall 2025) course
 project "Beyond the Blanket Challenge".
-The project is designed by [Shu Wan](https://shu-wan.github.io/).
 
-The materials here include datasets, evaluation scripts, and a summary of the
-final leaderboard and results.
+The project is designed and mentoerd by [Shu Wan](https://shu-wan.github.io/).
 
 > [!NOTE]
 >
