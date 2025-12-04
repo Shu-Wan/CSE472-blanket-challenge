@@ -1,8 +1,34 @@
 # GG
 
-The journey comes to an end. Congrats to all teams to reach this far!
+The journey comes to an end. Congratulations to all teams for making it this far!
 
 ## :trophy: Leaderboard
+
+![Final leaderboard summary](/labs/05_final_eval/fig/team_metric_summary.png)
+
+| Rank | Group | Members           | Final Score (↓) |
+| :--: | :---: | ----------------- | :-------------: |
+| :1st_place_medal: 1 | 10    | Ang, Muhammed     |    **0.194036** |
+| :2nd_place_medal: 2 | 8     | Fredo, Anton      |     0.208636    |
+| :3rd_place_medal: 3 | 7     | Dhruv, Sahajpreet |     0.280585    |
+| :medal_sports: 4 | 1     | Sameera, Tanmayi  |     0.304475    |
+
+At a high level, all teams achieved similar RMSE, so the leaderboard is primarily driven by the
+Jaccard score, i.e., the quality of Markov blanket discovery.
+
+The first-place submission stands out by reaching an average Jaccard above 0.7,
+but with noticeably higher variance across tasks.
+
+One likely contributor to this high standard deviation is the use of a fixed 0.5
+threshold to binarize Markov blanket probabilities;
+tuning this threshold on a validation set could further improve stability and overall performance.
+
+The second-place submission treats prediction and Markov blanket discovery as two
+separate tasks, so its RMSE can be interpreted as an "all-features" baseline.
+
+Teams 7 and 1 instead use the predicted Markov blanket for prediction, which leads
+to slightly higher RMSE than the all-feature baseline.
+This highlights how sensitive predictive performance can be to the quality of Markov blanket discovery.
 
 ## Team Roster
 
@@ -48,21 +74,22 @@ flowchart LR
     style Q2 fill:#e1bee7,stroke:#7b1fa2
 ```
 
-We evaluate the model on a set of $N$ unseen tasks $\{\mathcal{T}_j\}_{j=1}^N$ on testing stage.
+We evaluate the model on a set of $N$ unseen tasks $\{\mathcal{T}_j\}_{j=1}^N$ at test time.
 
 For each task $\mathcal{T}_j$, the dataset is split into a support set and a query set:
 
 - **Support Set**: $\mathcal{D}^{(j)}_{support} = \{(x_i, y_i)\}_{i=1}^k$
 - **Query Set**: $\mathcal{D}^{(j)}_{query} = \{(x_i, y_i)\}_{i=1}^{N_{query}}$
 
-,and the model predicts:
+and the model predicts:
 
 1. The target values $\hat{y}$ for samples in $\mathcal{D}^{(j)}_{query}$.
 2. The Markov Blanket mask $\hat{m}^{(j)} \in \{0, 1\}^d$.
 
 ### Submission file
 
-On submission dataset, for each dataset (data_id), predict both `y` and `markov_blanket`, and save results in `submission.csv` with the following format:
+On the submission dataset, for each dataset (`data_id`), predict both `y` and
+`markov_blanket`, and save results in `submission.csv` with the following format:
 
 | data_id | y_pred                    | markov_blanket_pred      |
 | ------- | ------------------------- | ------------------------ |
