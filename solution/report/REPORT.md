@@ -1,5 +1,5 @@
 ---
-geometry: margin=0.85in
+geometry: margin=1in
 fontsize: 10pt
 documentclass: article
 classoption: twocolumn
