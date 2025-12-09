@@ -1,0 +1,33 @@
+{
+  "timestamp": "2025-11-24T19:41:16.350887",
+  "config": {
+    "supported_feature_dims": [
+      19,
+      9
+    ],
+    "holdout_fraction": 0.1,
+    "tabpfn": {
+      "epochs": 1,
+      "lr": 1e-06,
+      "max_samples": 10000,
+      "val_fraction": 0,
+      "model_path": "/scratch/dbansa11/tabpfn_models"
+    },
+    "mb_mlp": {
+      "epochs": 50,
+      "lr": 0.001,
+      "batch_size": 512,
+      "hidden_sizes": [
+        256,
+        128
+      ],
+      "val_fraction": 0.2,
+      "n_fold": 5
+    },
+    "threshold_tuning": {
+      "min": 0.2,
+      "max": 0.8,
+      "num_thresholds": 13
+    }
+  }
+}
